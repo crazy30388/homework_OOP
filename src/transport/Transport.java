@@ -2,6 +2,7 @@ package transport;
 
 import java.util.Objects;
 
+
 public class Transport {
     private String brand;
     private String model;

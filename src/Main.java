@@ -13,7 +13,7 @@ public class Main {
         System.out.println(car3);
         System.out.println(car4);
         System.out.println(car5);
-        Bus bus = new Bus("бренд", "модель", 2020, "Россия", "красный", 125, 3, 222, "механика");
+        Bus bus = new Bus("Бренд", "Модель", 2020, "Россия", "красный", 125, 3, 222, "механика");
         System.out.println(bus);
     }
 
