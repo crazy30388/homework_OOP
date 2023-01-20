@@ -2,7 +2,8 @@ package transport;
 
 import java.util.Objects;
 
-public class Car {
+public class Car extends Transport {
+
     public static class Key {
         final private boolean remoteStart;
         final private boolean keyLessAccess;
@@ -20,65 +21,32 @@ public class Car {
                     '}';
         }
     }
-    private final String brand;
-    private final String model;
     private double engineVolume;
-    private String color;
-    private final int year;
-    private final String country;
     private String gearbox;
-    private final String bodyType;
+    private String bodyType;
     private int regNumber;
     private final int numSeats;
     private boolean rubber;
 
     private Key key;
 
-    public Car(String brand, String model, double engineVolume, String color, int year, String country,
-               String gearbox, String bodyType, int regNumber, int numSeats, boolean rubber, boolean remoteStart, boolean keyLessAccess) {
-        this.brand = brand == null ? "default" : brand;
-        this.model = model == null || model.isEmpty() ? "default" : model;
-        this.engineVolume = engineVolume > 0 ? engineVolume : 1.5;
-        this.color = color == null || color.isEmpty() ? "white" : color;
-        this.year = year > 0 ? year : 2000;
-        this.country = country == null || country.isEmpty() ? "default" : country;
-        this.gearbox = gearbox == null ? "default" : gearbox;
-        this.bodyType = bodyType == null ? "default" : bodyType;
-        this.regNumber = regNumber > 0 ? regNumber : 555;
-        this.numSeats = numSeats <= 0 ? 4 : numSeats;
+    public Car(String brand, String model, int year, String country, String color, int maxSpeed, double engineVolume, String gearbox, String bodyType, int regNumber, int numSeats, boolean rubber, boolean remoteStart, boolean keyLessAccess) {
+        super(brand, model, year, country, color, maxSpeed);
+        this.engineVolume = engineVolume;
+        this.gearbox = gearbox;
+        this.bodyType = bodyType;
+        this.regNumber = regNumber;
+        this.numSeats = numSeats;
         this.rubber = rubber;
- //       this.key = new Key(true, true);
         key = new Key(remoteStart, keyLessAccess);
     }
 
-    public String getBrand() {
-        return brand;
-    }
-    public String getModel() {
-        return model;
-    }
     public double getEngineVolume() {
         return engineVolume;
     }
 
     public void setEngineVolume(int engineVolume) {
         this.engineVolume = engineVolume;
-    }
-
-    public String getColor() {
-        return color;
-    }
-
-    public void setColor(String color) {
-        this.color = color;
-    }
-
-    public int getYear() {
-        return year;
-    }
-
-    public String getCountry() {
-        return country;
     }
 
     public String getBodyType() {
@@ -113,29 +81,24 @@ public class Car {
         this.rubber = rubber;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Car car = (Car) o;
-        return Double.compare(car.engineVolume, engineVolume) == 0 && year == car.year && regNumber == car.regNumber && numSeats == car.numSeats && rubber == car.rubber && Objects.equals(brand, car.brand) && Objects.equals(model, car.model) && Objects.equals(color, car.color) && Objects.equals(country, car.country) && Objects.equals(gearbox, car.gearbox) && Objects.equals(bodyType, car.bodyType);
+        return Double.compare(car.engineVolume, engineVolume) == 0 && regNumber == car.regNumber && numSeats == car.numSeats && rubber == car.rubber && Objects.equals(gearbox, car.gearbox) && Objects.equals(bodyType, car.bodyType) && Objects.equals(key, car.key);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(brand, model, engineVolume, color, year, country, gearbox, bodyType, regNumber, numSeats, rubber);
+        return Objects.hash(engineVolume, gearbox, bodyType, regNumber, numSeats, rubber, key);
     }
 
     @Override
     public String toString() {
         return "Car{" +
-                "brand='" + brand + '\'' +
-                ", model='" + model + '\'' +
-                ", engineVolume=" + engineVolume +
-                ", color='" + color + '\'' +
-                ", year=" + year +
-                ", country='" + country + '\'' +
+                super.toString()+
+                "engineVolume=" + engineVolume +
                 ", gearbox='" + gearbox + '\'' +
                 ", bodyType='" + bodyType + '\'' +
                 ", regNumber=" + regNumber +
@@ -144,12 +107,14 @@ public class Car {
                 ", key=" + key +
                 '}';
     }
-  //  public void changeTyres(int month){
-    //    if ((month>=11 && month<=12) || (month>=1 && month<=3));{
-      //      rubber = false;
-        //}
-        //if (month >=4 && month <= 10){
-          //  rubber = true;
-        //}
+    public void changeTyres(int month){
+        if ((month>=11 && month<=12) || (month>=1 && month<=3));{
+            rubber = false;
+        }
+        if (month >=4 && month <= 10){
+            rubber = true;
+        }
+
+}
 
 }
