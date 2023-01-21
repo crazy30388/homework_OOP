@@ -3,21 +3,17 @@ package transport;
 import java.util.Objects;
 
 
-public class Transport {
+public abstract class Transport<T extends Driver> implements Competing {
     private String brand;
     private String model;
-    private final int year;
-    private final String country;
-    private String color;
-    private int maxSpeed;
+    private double engineVolume;
+    private T driver;
 
-    public Transport(String brand, String model, int year, String country, String color, int maxSpeed) {
+    public Transport(String brand, String model, double engineVolume, T driver) {
         this.brand = brand == null ? "default" : brand;
         this.model = model == null || model.isEmpty() ? "default" : model;
-        this.year = year > 0 ? year : 2000;
-        this.country = country == null || country.isEmpty() ? "default" : country;
-        this.color = color == null || color.isEmpty() ? "white" : color;
-        this.maxSpeed = maxSpeed > 0 ? maxSpeed : 130;
+        this.engineVolume = engineVolume < 0 ? engineVolume : 1.6;
+        setDriver(driver);
     }
 
     public String getBrand() {
@@ -36,42 +32,39 @@ public class Transport {
         this.model = model;
     }
 
-    public int getYear() {
-        return year;
+    public double getEngineVolume() {
+        return engineVolume;
     }
 
-    public String getCountry() {
-        return country;
+    public void setEngineVolume(double engineVolume) {
+        this.engineVolume = engineVolume;
     }
 
-    public String getColor() {
-        return color;
+    public T getDriver() {
+        return driver;
     }
 
-    public void setColor(String color) {
-        this.color = color;
+    public void setDriver(T driver) {
+        this.driver = driver;
     }
 
-    public int getMaxSpeed() {
-        return maxSpeed;
+    public abstract void startMoove();
+    public abstract void finishMoove();
+    public void printInfo(){
+        System.out.println("водитель "+ driver.getName()+" управляет автомобилем "+getBrand()+" и будет участвовать в заезде");
     }
-
-    public void setMaxSpeed(int maxSpeed) {
-        this.maxSpeed = maxSpeed;
-    }
-
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Transport transport = (Transport) o;
-        return year == transport.year && maxSpeed == transport.maxSpeed && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model) && Objects.equals(country, transport.country) && Objects.equals(color, transport.color);
+        return Double.compare(transport.engineVolume, engineVolume) == 0 && Objects.equals(brand, transport.brand) && Objects.equals(model, transport.model);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(brand, model, year, country, color, maxSpeed);
+        return Objects.hash(brand, model, engineVolume);
     }
 
     @Override
@@ -79,10 +72,7 @@ public class Transport {
         return "Transport{" +
                 "brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
-                ", year=" + year +
-                ", country='" + country + '\'' +
-                ", color='" + color + '\'' +
-                ", maxSpeed=" + maxSpeed +
+                ", engineVolume=" + engineVolume +
                 '}';
     }
 }
