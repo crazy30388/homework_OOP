@@ -94,15 +94,21 @@ public abstract class Transport<T extends Driver> implements Competing {
     public void setSize(Size size) {
         this.size = size;
     }
+    public boolean isDiagnosticPassed(){
+        return isDiagnosticPassed();
+    }
 
     public abstract void startMoove();
     public abstract void finishMoove();
     public void printInfo(){
         System.out.println("водитель "+ driver.getName()+" управляет автомобилем "+getBrand()+" и будет участвовать в заезде");
     }
-    public void printType(){
-        System.out.println("Данных по транспортному средству недостаточно");
+    abstract boolean passDiagnostic();
+
+    public void printType() {
+
     }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

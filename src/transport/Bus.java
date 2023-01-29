@@ -7,12 +7,21 @@ public class Bus extends Transport<DriverD> {
     }
 
     @Override
+    public boolean passDiagnostic(){
+        throw new RuntimeException("Автобусы диагностику проходить не должны");
+    }
+    @Override
     public void startMoove(){
         System.out.println("Bus brand "+ getBrand() + " start moove");
     }
     @Override
     public void finishMoove(){
         System.out.println("Bus brand "+ getBrand() + " finish moove");
+    }
+
+    @Override
+    public void printType() {
+
     }
 
     @Override

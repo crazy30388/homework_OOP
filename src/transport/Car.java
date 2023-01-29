@@ -7,6 +7,10 @@ public class Car extends Transport<DriverB> {
     }
 
     @Override
+    public boolean passDiagnostic(){
+        return this.isDiagnosticPassed();
+    }
+    @Override
     public void startMoove(){
         System.out.println("Car brand "+ getBrand() + " start moove");
     }

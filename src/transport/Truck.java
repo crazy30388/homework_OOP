@@ -6,6 +6,16 @@ public class Truck extends Transport<DriverC>{
     }
 
     @Override
+    public boolean passDiagnostic(){
+        return this.isDiagnosticPassed();
+    }
+
+    @Override
+    public void printType() {
+
+    }
+
+    @Override
     public void startMoove(){
         System.out.println("Truck brand "+ getBrand() + " start moove");
     }
