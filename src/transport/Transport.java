@@ -8,12 +8,35 @@ public abstract class Transport<T extends Driver> implements Competing {
     private String model;
     private double engineVolume;
     private T driver;
+    private Type type;
+    private LoadCapacity loadCapacity;
+    private Size size;
 
-    public Transport(String brand, String model, double engineVolume, T driver) {
+    public Transport(String brand, String model, double engineVolume, T driver, Type type,
+                     LoadCapacity loadCapacity, Size size) {
         this.brand = brand == null ? "default" : brand;
         this.model = model == null || model.isEmpty() ? "default" : model;
         this.engineVolume = engineVolume < 0 ? engineVolume : 1.6;
         setDriver(driver);
+        if(type == null){
+            System.out.println("Недостаточно данных");
+            return;
+        }
+        this.type = type;
+        if (loadCapacity == null){
+            System.out.println("Недостаточно данных");
+            return;
+        }
+        this.loadCapacity = loadCapacity;
+        if(size == null){
+            System.out.println("Недостаточно данных");
+            return;
+        }
+        this.size = size;
+    }
+
+    public Transport(String brand, String model, double engineVolume, DriverC driver, LoadCapacity loadCapacity) {
+
     }
 
     public String getBrand() {
@@ -48,12 +71,38 @@ public abstract class Transport<T extends Driver> implements Competing {
         this.driver = driver;
     }
 
+    public Type getType() {
+        return type;
+    }
+
+    public void setType(Type type) {
+        this.type = type;
+    }
+
+    public LoadCapacity getLoadCapacity() {
+        return loadCapacity;
+    }
+
+    public void setLoadCapacity(LoadCapacity loadCapacity) {
+        this.loadCapacity = loadCapacity;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
     public abstract void startMoove();
     public abstract void finishMoove();
     public void printInfo(){
         System.out.println("водитель "+ driver.getName()+" управляет автомобилем "+getBrand()+" и будет участвовать в заезде");
     }
-
+    public void printType(){
+        System.out.println("Данных по транспортному средству недостаточно");
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,4 +124,5 @@ public abstract class Transport<T extends Driver> implements Competing {
                 ", engineVolume=" + engineVolume +
                 '}';
     }
+
 }

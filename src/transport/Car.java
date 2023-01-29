@@ -1,11 +1,9 @@
 package transport;
 
-import java.util.Objects;
-
 
 public class Car extends Transport<DriverB> {
-    public Car(String brand, String model, double engineVolume, DriverB driver) {
-        super(brand, model, engineVolume, driver);
+    public Car(String brand, String model, double engineVolume, DriverB driver, Type type) {
+        super(brand, model, engineVolume, driver, type);
     }
 
     @Override
@@ -36,4 +34,5 @@ public class Car extends Transport<DriverB> {
         int maxSpeed = (int)(minBound +(maxBound-minBound)*Math.random());
         System.out.println("Max speed for car: " + maxSpeed);
     }
+
 }
