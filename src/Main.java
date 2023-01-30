@@ -13,6 +13,7 @@ public class Main {
             printInfo(truck);
             printInfo(bus);
         }
+        System.out.println();
     }
     private static void printInfo(Transport<?> transport){
         System.out.println("водитель "+transport.getDriver().getName()+" управляет автомобилем "+transport.getBrand()+" и будет участвовать в заезде");

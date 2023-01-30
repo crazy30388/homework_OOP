@@ -1,14 +1,41 @@
 package transport;
 
 
+import java.util.Objects;
+
 public class Bus extends Transport<DriverD> {
+    private Size size;
     public Bus(String brand, String model, double engineVolume, DriverD driver, Size size) {
-        super(brand, model, engineVolume, driver, size);
+        super(brand, model, engineVolume, driver);
+        this.size = size;
+    }
+
+    public Size getSize() {
+        return size;
+    }
+
+    public void setSize(Size size) {
+        this.size = size;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Bus bus = (Bus) o;
+        return size == bus.size;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), size);
     }
 
     @Override
     public boolean passDiagnostic(){
-        throw new RuntimeException("Автобусы диагностику проходить не должны");
+
+        throw new TransportTypeException("Автобусы диагностику проходить не должны");
     }
     @Override
     public void startMoove(){
@@ -21,7 +48,12 @@ public class Bus extends Transport<DriverD> {
 
     @Override
     public void printType() {
-
+        if(getSize() == null){
+            System.out.println("Недостаточно данных");
+        }
+        else {
+            System.out.println(getSize());
+        }
     }
 
     @Override
@@ -43,5 +75,12 @@ public class Bus extends Transport<DriverD> {
         int maxBound = 120;
         int maxSpeed = (int)(minBound +(maxBound-minBound)*Math.random());
         System.out.println("Max speed for bus: " + maxSpeed);
+    }
+
+    @Override
+    public String toString() {
+        return "Bus{" +
+                "size=" + size +
+                '}';
     }
 }
