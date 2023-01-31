@@ -34,8 +34,7 @@ public class Bus extends Transport<DriverD> {
 
     @Override
     public boolean passDiagnostic(){
-
-        throw new TransportTypeException("Автобусы диагностику проходить не должны");
+       throw new TransportTypeException("Автобусы диагностику проходить не должны");
     }
     @Override
     public void startMoove(){

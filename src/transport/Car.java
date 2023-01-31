@@ -38,7 +38,7 @@ public class Car extends Transport<DriverB> {
 
     @Override
     public boolean passDiagnostic(){
-        return this.isDiagnosticPassed();
+        return isDiagnosticPassed();
     }
     @Override
     public void startMoove(){

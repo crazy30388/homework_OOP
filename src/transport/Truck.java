@@ -33,7 +33,8 @@ public class Truck extends Transport<DriverC>{
 
     @Override
     public boolean passDiagnostic(){
-        return this.isDiagnosticPassed();
+        return isDiagnosticPassed();
+
     }
 
     @Override
