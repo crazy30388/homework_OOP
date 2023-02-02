@@ -1,7 +1,16 @@
 import transport.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Main {
     public static void main(String[] args) {
+        List<String> auto = new ArrayList<>();
+        auto.add("car");
+        auto.add("bus");
+        auto.add("truck");
+        System.out.println(auto);
+
         for (int i = 1; i <= 4; i++) {
             DriverB driverB = new DriverB("Driver cat.B "+i, true, 5+i);
             Car car = new Car("Lada " +i, "Granta" +i, 1.7, driverB, Type.VAN);
@@ -14,10 +23,12 @@ public class Main {
             printInfo(bus);
             Truck.isDiagnosticPassed();
             Car.isDiagnosticPassed();
-            Bus.isDiagnosticPassed();
+            bus.passDiagnostic();
         }
+
     }
     private static void printInfo(Transport<?> transport){
         System.out.println("водитель "+transport.getDriver().getName()+" управляет автомобилем "+transport.getBrand()+" и будет участвовать в заезде");
     }
+
 }

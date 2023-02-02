@@ -1,5 +1,8 @@
 package transport;
 
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -90,5 +93,10 @@ public abstract class Transport<T extends Driver> implements Competing {
                 ", engineVolume=" + engineVolume +
                 '}';
     }
+    static List<Mechanic> listMechanics = new ArrayList<>();
+    public static void addMechanics(){
+    listMechanics.add(new Mechanic("name1", "company1"));
+    listMechanics.add(new Mechanic("name2", "company2"));
+    listMechanics.add(new Mechanic("name3", "company3"));
 
-}
+}}
