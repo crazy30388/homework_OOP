@@ -1,5 +1,7 @@
 package transport;
 
+import java.util.Iterator;
+
 public abstract class Driver {
     private String name;
     private boolean hasDriverLicense;
@@ -38,6 +40,15 @@ public abstract class Driver {
     }
 
     public abstract void startMoove();
+
     public abstract void finishMoove();
+
     public abstract void refill();
+
+    public void add(Driver driver) {
+    }
+
+    public Iterator<Driver> iterator() {
+        return null;
+    }
 }
