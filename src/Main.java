@@ -23,7 +23,7 @@ public class Main {
             printInfo(car);
             printInfo(truck);
             printInfo(bus);
- //           Truck.isDiagnosticPassed();
+            //Truck.isDiagnosticPassed();
 //            Car.isDiagnosticPassed();
 //            bus.passDiagnostic();
         }
@@ -51,7 +51,7 @@ public class Main {
             driver.add(driver);
         }
         Driver driver = null;
-        Iterator<Driver> iterator = driver.iterator();
+        Iterator<Driver> iterator = drivers.iterator();
 
         while (iterator.hasNext()) {
             driver = iterator.next();
